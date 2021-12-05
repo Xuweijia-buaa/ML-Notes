@@ -110,10 +110,10 @@ $$
 \vec{x}_{(1n)}*\vec{V}_{(nk)}=  [c_1,c_2,\cdots ,c_k]_{(1,k)} \\
 = [< \vec{x},\vec{V[1]}>,< \vec{x},\vec{V[2]}>,\cdots ,< \vec{x},\vec{V[k]}>]
 $$
-所以第一项是$\vec{x}_{(1n)}*\vec{V}_{(nk)}$矩阵相乘后的所有值相加：
+所以第一项是$\vec{x}_{(1n)}*\vec{V}_{(nk)}$矩阵相乘后的所有值相加，之后再平方：
 $$
 \sum_{k}( < \vec{x},\vec{V[k]}>^2)\\
-=sum( \vec{x}_{(1n)}*\vec{V}_{(nk)})
+= (sum( \vec{x}_{(1n)}*\vec{V}_{(nk)})) ^2
 $$
 而第二项类似。只不过x和V在矩阵相乘前，所有元素先平方：
 $$
@@ -129,6 +129,6 @@ y_{FM-order2}= \sum_{i}^{n}\sum_{j!=i}^{n}x_ix_j<\vec{v_i},\vec{v_j}> \\
 =   \frac{1}{2}  \sum_{k}( \sum_{i}^{n}\sum_{j}^{n}x_ix_jv_{ik}v_{jk} - \sum_{i}^{n}x_i^2v_{ik}^2)\\
 =   \frac{1}{2}  \sum_{k}( \sum_{i}^{n}x_iv_{ik}\sum_{j}^{n}x_jv_{jk} - \sum_{i}^{n}x_i^2v_{ik}^2)\\
 =   \frac{1}{2}  \sum_{k}( < \vec{x},\vec{V[k]}>^2 - < \vec{x}^2,\vec{V[k]}^2>)\\
-=   \frac{1}{2}  (sum( \vec{x}*V) - sum( \vec{x^2}*V^2) )
+=   \frac{1}{2}  (  (sum( \vec{x}*V))^2 - sum( \vec{x^2}*V^2) )
 $$
 最终的复杂度是每个维度的向量内积<x,V[k]>的$O(n)$，以及最后的k维加和：$O(kn)$
