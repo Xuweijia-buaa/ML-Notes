@@ -132,3 +132,16 @@ y_{FM-order2}= \sum_{i}^{n}\sum_{j!=i}^{n}x_ix_j<\vec{v_i},\vec{v_j}> \\
 =   \frac{1}{2}  (  (sum( \vec{x}*V))^2 - sum( \vec{x^2}*V^2) )
 $$
 最终的复杂度是每个维度的向量内积<x,V[k]>的$O(n)$，以及最后的k维加和：$O(kn)$
+
+不过在DeepFM里，网上的大多数实现，是用Bi-interaction来得到FM部分的二阶score。样本每个离散特征同样首先映射为对应的embedding。而之后最终的二阶交叉特征交叉得分，是所有embdding拼接后得到的新向量，所有位置两两交互的加和。对于原始的2个离散特征[x1,x2], 对应的embedding拼接后如果是$e$=[$\vec{e1}$,$\vec{e2}$]=$[ v1 ，v2， v3| v4， v5， v6]，那么最终的FM二阶分数是这些值22相乘后的加和：
+$$
+y_{FM-order2}= \sum_{i}^{l}\sum_{j!=i}^{l}v_iv_j
+$$
+其中$l$是各特征embedding拼接后的新向量总长度(6)。用原公式实现的FM二阶score，只有不同域embeeding的交互。本质上相当于每个离散特征embedding，所有embedding的相同位置相互交互。如果映射后的embeeding是[a,b,c | d,e,f ], 原始公式对应的二阶score是 ad + be + df （$<\vec{v_i},\vec{v_j}>$）。现在相当于计算了所有元素的所有交互：score= ab + ac + ... + ef，在包含原始交互的基础上，增加了样本该域该特征取值对应的embedding，内部元素之间的交互。计算向量[a,b,c]之间的22交互，即 1/2 ((a+b+c)^2 -  (a^2 + b^2 + c^2))。一般在torch中通过向量计算：
+$$
+y_{FM-order2}= (\sum_{i}^{l}v_i)^2 - \sum_{i}^{l}v_i^2
+$$
+
+
+
+
