@@ -21,7 +21,7 @@ L(\hat{y})=    max(0,1-\hat{y})    \\
  \end{gathered}
 \right.
 $$
-![img](https://pic3.zhimg.com/80/v2-3c6aa9626ee8e4609b0d7c5712baf624_720w.jpg?source=1940ef5c)
+![img](/../pair-loss小结.assets/v2-3c6aa9626ee8e4609b0d7c5712baf624_720w.jpg)
 
 即把1当作一个阈值。如果预测值超过这个阈值，认为该样本已经足够好，就不需要再去学习了。而是专注于学习那些预测值还没有达到该阈值的样本。尽量让预测值去逼近这个阈值，学习该预测值和阈值之间的差值。因为该损失像一本打开的书，所以称为合页损失函数。
 
@@ -35,7 +35,7 @@ $$
 
  优点1： 相比0/1损失, 会对未满足阈值的样本进一步学习。
 
-![See the source image](https://www.researchgate.net/profile/Yoonkyung_Lee/publication/45283473/figure/download/fig1/AS:340863369662470@1458279568961/The-solid-line-is-the-0-1-loss-and-the-dashed-line-is-the-hinge-loss-in-terms-of-the.png)
+![See the source image](/../pair-loss小结.assets/The-solid-line-is-the-0-1-loss-and-the-dashed-line-is-the-hinge-loss-in-terms-of-the.png)
 
 
 
@@ -53,7 +53,7 @@ z=      \left\{ \begin{gathered} \hat{y}-y       & y=1,        \\  y-\hat{y}    
 $$
 按阈值取后，损失函数如图：$L(\hat{y})=    max(0,0-z)    = max(0, -z)$。相比标签为+-1的场景，预测值的阈值变成了0。
 
-![img](https://img-blog.csdnimg.cn/202005182200369.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3JpY2hhcmRfY2hl,size_16,color_FFFFFF,t_70#pic_center)
+![img](/../pair-loss小结.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3JpY2hhcmRfY2hl,size_16,color_FFFFFF,t_70#pic_center.png)
 
 
 
